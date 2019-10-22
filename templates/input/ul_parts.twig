@@ -1,0 +1,83 @@
+{% for item_name, item in items %}
+{% if loop.last == true %}
+<ul class="tableInquiry lastTable wFull">
+{% else %}
+<ul class="tableInquiry wFull">
+{% endif %}
+
+{% if item_name == "同意書" %}
+<li class="dotline pdl30 pdr30">
+{% else %}
+<li>
+<dl>
+<dt><span class="middleTitle multiplelines">{{item_name}}</span></dt>
+<dd class="formcell">
+{% endif %}
+{% for col in item %}
+	{% if col.html_type == 'text' and col.class == 'handwritingItem' %}
+	{# 手書きinput.text #}
+	<input type="text" id="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter" placeholder="{{col.place_holder}}" {% if col.data_character_type %} data-character-type="{{col.data_character_type}}"{% endif %}>{{col.append_text}}
+	{% elseif col.html_type == 'text' and col.class == 'signatureItem' %}
+		<img alt="" class="signatureItem" data-field-type="signature" data-character-type="nameKanji" id="{{col.element_name}}" src="/assets/img/empty1x1.gif">
+	{% elseif col.html_type == 'text' and col.class == 'iframeImage' %}
+		<div class="agree_txtarea">
+			<!-- 個人情報取扱 同意書本文-->
+			<p><img alt="" src="{{col.data_freeplace}}"></p>
+		</div>
+	{% elseif col.html_type == 'text' and ( col.class == 'keypad_num' or  col.class == 'keypad_num_hyphen' or  col.class == 'keypad_num_dot'  or  col.class == 'keypad_qwerty' ) %}
+	{# 手書き以外のinput.text #}
+	
+		{# 自動計算系のinput.text #}
+		{% if col.front_function == 'auto_calc_age' %}
+			{# 年齢自動計算 #}
+			<input type="text" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter auto_calc_age" placeholder="{{col.place_holder}}" {% if col.data_character_type %} data-character-type="{{col.data_character_type}}"{% endif %} {% if col.max_length %}maxlength="{{col.max_length}}"{% endif %} data-ret="{{col.data_ret}}" data-type="{{col.data_freeplace}}">{{col.append_text}}
+		{% elseif col.front_function == 'auto_zip_code' %}
+			{# 郵便番号 #}
+			<input type="text" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter" placeholder="{{col.place_holder}}">
+			<button class="zip_button" data-zip="{{col.data_freeplace}}" data-ret="{{col.data_ret}}"><span class="ion-android-search"></span><span class="btntxt">住所検索</span></button>
+		{% else %}
+			{# 通常のinput.text #}
+			<input type="text" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter" placeholder="{{col.place_holder}}" {% if col.data_character_type %} data-character-type="{{col.data_character_type}}"{% endif %} {% if col.max_length %}maxlength="{{col.max_length}}"{% endif %}>{{col.append_text}}
+		{% endif %}
+	{% elseif col.html_type == 'radio' and col.class == 'radio' %}
+	<label class="chkbox_min">
+		<input type="radio" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}}{% endif %}" value="{{col.value}}">
+		<span class="radio-icon"></span>{{col.label_name}}
+	</label>
+	{% elseif col.html_type == 'check' and col.class == 'checkbox' and col.other_class=='chkbox_min2' %}
+	<br>
+	<label class="chkbox_min2 fsize16">
+		<input type="checkbox" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter" value="{{col.value}}">
+		<span class="checkbox-icon"></span>&nbsp;{{col.label_name}}
+	</label>
+	{% elseif col.html_type == 'check' and col.class == 'checkbox' %}
+	<label class="chkbox fsize16">
+		<input type="checkbox" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter" value="{{col.value}}">
+		<span class="checkbox-icon"></span>&nbsp;{{col.label_name}}
+	</label>
+	{% elseif col.html_type == 'select' %}
+	<div class="select-box01 noenter">
+	<label>
+		<select name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter">
+			{% for this in col.data %}
+				<option value="{{this.value}}">{{this.label_name}}</option>
+			{% endfor %}
+		</select>
+	</label>
+	</div>
+	{% endif %}
+{% endfor %}
+{% if item_name != "同意書" %}
+</dd>
+</dl>
+{% elseif  item_name == "同意書" %}
+	<li class="dotline">
+		<div class="kima_agreement"><a href="javascript:void(0);"><span class="ion-ios-arrow-forward"> 当システムのプライバシーポリシーを見る</span></a></div>
+		<div id="modal-content" title="当システムのプライバシーポリシー">
+		<img alt="" src="../assets/img//sign/write/img_sailboat_privacy_policy.jpg">	</div>
+	</li>
+{% endif %}
+</li>
+</ul>
+
+{% endfor %}

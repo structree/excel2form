@@ -1,0 +1,15 @@
+{% block input %}
+		{{ include('input/header.twig', {'companyName': companyName,'formName': formName}) }}
+		
+		{{ include('input/wrapper.twig', {'structs': struct}) }}
+		
+		{{ include('input/footer.twig') }}
+{% endblock %}
+
+{% block confirm %}
+		{{ include('confirm/header.twig',{'companyName': companyName,'formName': formName}) }}
+		
+		{{ include('confirm/wrapper.twig', {'structs': struct}) }}
+		
+		{{ include('confirm/footer.twig') }}
+{% endblock %}

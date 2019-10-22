@@ -1,0 +1,35 @@
+<table>
+{% for item_name, item in items %}
+<tr>
+
+<td>{{item_name}}</td>
+<td>
+{% for col in item %}
+	{% if col.html_type == 'text' %}
+	<input type="text" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter" placeholder="{{col.place_holder}}" {% if col.data_character_type %} data-character-type="{{col.data_character_type}}"{% endif %} {% if col.max_length %}maxlength="{{col.max_length}}"{% endif %}>{{col.append_text}}
+	{% elseif col.html_type == 'radio'  %}
+	<label class="chkbox_min">
+		<input type="radio" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}}{% endif %}" value="{{col.value}}">
+		{{col.label_name}}
+	</label>
+	{% elseif col.html_type == 'check' %}
+	<label class="chkbox fsize16">
+		<input type="checkbox" name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter" value="{{col.value}}">
+		{{col.label_name}}
+	</label>
+	{% elseif col.html_type == 'select' %}
+	<div class="select-box01 noenter">
+	<label>
+	<select name="{{col.element_name}}" class="{% if col.class %}{{col.class}} {% endif %}{% if col.other_class %}{{col.other_class}} {% endif %}noenter">
+		{% for this in col.data %}
+		<option value="{{this.value}}">{{this.label_name}}</option>
+		{% endfor %}
+	</select>
+	</label>
+	</div>
+	{% endif %}
+{% endfor %}
+</td>
+</tr>
+{% endfor %}
+</table>

@@ -1,0 +1,88 @@
+body{
+	background: #00b09e;
+	margin:auto;
+	padding:auto;
+}
+#wrapper{
+	width: 600px;
+	margin:auto;
+	height: 100%;
+	text-align: center;
+	padding:20px 0 20px 0;
+}
+#wrapper h1{
+	color:#FFF;
+	font-family: century
+}
+#wrapper .file{
+	border:solid 1px #FFF;
+	border-width:1px 0 0 0;
+	padding:40px 0 10px 0;
+	background: #FFF;
+	line-height:1;
+	border-radius: 10px;
+}
+#wrapper .send button{
+	background:#00b09e;
+	padding:10px;
+	border-radius: 5px;
+	color:#FFF;
+	font-weight: bold;
+	width:200px;
+	font-size:130%;
+	margin:30px 0 20px 0;
+	cursor: pointer;
+}
+#wrapper p{
+	color:#FFF;
+}
+
+#wrapper label.file_select{
+	color: #00b09e;
+	background-color: #FFF;
+	border:3px #00b09e solid;
+	padding: 12px;
+	font-weight: bold;
+	border-radius: 12px;
+	cursor: pointer;
+}
+#wrapper .readtxt{
+	text-align: left;
+	line-height:1.6;
+	font-size:84%;
+	margin:20px 0 0 0;
+	border-radius: 10px;
+	border:solid #FFF 5px;
+	padding:10px;
+	background: #00766b;
+}
+#wrapper .readtxt a{
+color: #FFF;}
+#wrapper .samplefile{
+	color:#FFF;
+	font-weight: bold;
+	font-size:130%;
+}
+#wrapper .file h2{
+	color:#00b09e;
+	margin:0px;
+	padding:0px;
+}
+#wrapper .file a{
+	color:#2160d3;
+	font-weight: bold;
+	font-size:120%;
+}
+
+#wrapper .pagetop{
+	text-align: center;
+	padding: 20px;
+}
+#wrapper .pagetop a{
+	font-size: 110%;
+	color:#FFF;
+}
+#wrapper div.error{
+	color:red;
+	font-weight: bold;
+}

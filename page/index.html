@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ExcelToForm</title>
+		<meta http-equiv="content-language" content="ja">
+		<meta charset="UTF-8">
+		<link type="text/css" rel="stylesheet" href="assets/service/css/style.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>ExcelToForm</h1>
+			<form method="post" action="{{url}}" enctype="multipart/form-data">
+				<div class="file">
+					<label class="file_select" for="file_select">
+						＋ファイルを選択(2MBまで)
+						<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+						<input type="file" id="file_select" name="excelFile" style="display:none;">
+					</label>
+					<div class="send"><button>変換する</button></div>
+					<div class="error">{{error}}</div>
+				</div>
+			  <input type="hidden" name="r_kind" value="run" />
+			  <input type="hidden" name="token" value="{{token}}" />
+			</form>
+			<div class="readtxt">
+				<a href="sample.xlsx" class="samplefile">サンプルExcel定義書ファイルをダウンロード</a>
+				<p>
+					ExcelToFormはWEBサイトやWEBアプリなどで使うHTMLフォームをExcelから一括で生成するツールです。<br>
+					大量のHTMLフォームを手作業で作成すると、ケアレスミスが発生しやすく修正が入った際には手間もかかります。少しでも手作業での労力やミスを減らそうという目的で作成しました。
+				</p>
+				<p>
+					<strong>■使用手順</strong><br>
+					1.<a href="sample.xlsx">サンプルExcel定義書ファイルをダウンロード</a>します。<br>
+					2.ダウンロードしたファイルを開き、作成したいフォームの内容に変更します。<br>
+					3.この画面の「ファイル選択」→「変換する」の順でボタンを押します。<br>
+					4.zip形式のファイルが出来上がりダウンロードリンクからダウンロードできます。<br>
+					以上で作業が完了します。
+				</p>
+			</div>
+		</div>
+		<script src="assets/service/js/jquery.js"></script>
+	</body>
+</html>

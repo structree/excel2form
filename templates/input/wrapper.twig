@@ -1,0 +1,15 @@
+{% for mainCategoryKey, mainCategoryValue in structs %}
+{% if mainCategoryKey%}
+<div id="no{{loop.index}}" class="navTarget">
+<h2>{{mainCategoryKey}}</h2>
+<div class="tablelist">
+{% for subCategoryKey, subCategoryValue in mainCategoryValue %}
+{% if loop.length > 1 and subCategoryKey %}
+<h3>{{subCategoryKey}}</h3>
+{% endif %}
+	{{ include('input/parts.twig', {'items': subCategoryValue}) }}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% endfor %}

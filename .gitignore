@@ -1,0 +1,8 @@
+/html/
+/vendor/*
+/log/*
+/nbproject
+/work/*
+!.gitkeep
+.idea/*
+composer.json
